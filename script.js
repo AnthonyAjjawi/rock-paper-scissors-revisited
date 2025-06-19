@@ -110,11 +110,14 @@ function endGame() {
   buttonsArray.forEach((button) => {
     displayResults.textContent = "GAME OVER";
     button.disabled = true;
-    resetButton.style.display = "block";
+    
+    
   });
+  resetButton.style.display = "block";
+
 }
 
-function clearGame() {}
+
 
 function setupUI() {
   humanText.innerHTML = `You chose: ${humanChoice}`;
@@ -139,7 +142,9 @@ function initUI() {
   resetButton.addEventListener("click", () => {
     buttons.forEach((button) => {
       button.disabled = false;
+      
     });
+    resetButton.style.display = "none";
     resetGame();
   });
 }
