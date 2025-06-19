@@ -134,6 +134,15 @@ function initUI() {
   game.appendChild(displayResults);
   game.appendChild(score);
 
+  humanText.classList.add("humanText");
+  computerText.classList.add("computerText");
+  playerResults.classList.add("playerResults");
+  computerResults.classList.add("computerResults");
+  
+
+
+
+
   resetButton = document.createElement("button");
   game.appendChild(resetButton);
   resetButton.style.display = "none";
