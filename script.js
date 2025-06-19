@@ -138,7 +138,8 @@ function initUI() {
   computerText.classList.add("computerText");
   playerResults.classList.add("playerResults");
   computerResults.classList.add("computerResults");
-  
+  displayResults.classList.add("displayResults");
+  score.classList.add("score");
 
 
 

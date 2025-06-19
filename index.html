@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <title>Rock | Paper | Scissors</title>
 </head>
@@ -13,11 +16,20 @@
         <h1>Rock Paper Scissor</h1>
     </header>
     <main>
-        <div class="game">
-            <button value="rock">Rock</button>
-            <button value="paper">Paper</button>
-            <button value="scissors">Scissors</button>
+        <div class="game__container">
+            <div class="make__choice__container">
+                <h2>Tiny Human, make your choice</h2>
+            </div>
+            <div class="game">
+                <div class="game__buttons">
+                    <button class="btn-1" value="rock">Rock</button>
+                    <button class="btn-2" value="paper">Paper</button>
+                    <button class="btn-3"value="scissors">Scissors</button>
+                </div>
+
+            </div>
         </div>
+
     </main>
 
     <script src="script.js"></script>
