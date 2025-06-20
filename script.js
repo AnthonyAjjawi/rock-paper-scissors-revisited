@@ -2,10 +2,7 @@
 const game = document.querySelector(".game");
 
 //Initialize & declare buttons in a nodelist
-const buttons = document.querySelectorAll("button");
-
-//convert to an array
-const buttonsArray = Array.from(buttons);
+const buttons = [...document.querySelectorAll("button")];
 
 //Initialize & declare array full of responses
 const results = [
@@ -55,28 +52,44 @@ let computerScore = 0;
 //Initializing reset button
 let resetButton;
 
+//Initialize winner
+const winner = document.createElement("div");
+
+
+//create computer container div
+const computerContainer = document.querySelector(".computer__container");
+console.log(computerContainer);
+
+//create computer button
+const computerButton = document.querySelector(".btn-4");
+
+
+
 //creating a function to allow the computer to choose one of the choices
 function getComputerChoice() {
   let randomChoice = choices[Math.floor(choices.length * Math.random())];
   return randomChoice;
 }
 
-buttonsArray.forEach((button) => {
+
+
+
+
+
+
+
+
+buttons.forEach((button) => {
   button.addEventListener("click", function () {
     computerChoice = getComputerChoice();
+   computerButton.textContent = computerChoice;
+    console.log(computerContainer);
     humanChoice = button.value;
     playRound(humanChoice, computerChoice);
   });
 });
 
 function playRound(human, computer) {
-  setupUI();
-
-  if (human === computer) {
-    score.textContent = results[2];
-    game.appendChild(score);
-  }
-
   if (human === "rock") {
     if (computer === "paper") {
       computerScore++;
@@ -100,39 +113,39 @@ function playRound(human, computer) {
       computerScore++;
     }
   }
-
+  setupUI();
   if (humanScore >= 3 || computerScore >= 3) {
     endGame();
   }
 }
 
 function endGame() {
-  buttonsArray.forEach((button) => {
-    displayResults.textContent = "GAME OVER";
+  if (humanScore > computerScore) {
+    winner.textContent = `Game over! Good job, human, for now.`;
+  } else {
+    winner.textContent = `Game Over! Puny human. Try a little harder next time.`;
+  }
+
+  buttons.forEach((button) => {
     button.disabled = true;
-    
-    
   });
   resetButton.style.display = "block";
-
 }
-
-
 
 function setupUI() {
   humanText.innerHTML = `You chose: ${humanChoice}`;
-  computerText.innerHTML = `Computer Chose: ${computerChoice}`;
+  // computerText.innerHTML = `Computer Chose: ${computerChoice}`;
   playerResults.textContent = `Your score is: ${humanScore}`;
   computerResults.textContent = `Computer score is: ${computerScore}`;
 }
 
 function initUI() {
-  game.appendChild(humanText);
-  game.appendChild(computerText);
-  game.appendChild(playerResults);
-  game.appendChild(computerResults);
+  displayResults.appendChild(humanText);
+  // displayResults.appendChild(computerText);
+  displayResults.appendChild(playerResults);
+  displayResults.appendChild(computerResults);
+  displayResults.appendChild(winner);
   game.appendChild(displayResults);
-  game.appendChild(score);
 
   humanText.classList.add("humanText");
   computerText.classList.add("computerText");
@@ -140,9 +153,7 @@ function initUI() {
   computerResults.classList.add("computerResults");
   displayResults.classList.add("displayResults");
   score.classList.add("score");
-
-
-
+  winner.classList.add("winner");
 
   resetButton = document.createElement("button");
   game.appendChild(resetButton);
@@ -152,7 +163,6 @@ function initUI() {
   resetButton.addEventListener("click", () => {
     buttons.forEach((button) => {
       button.disabled = false;
-      
     });
     resetButton.style.display = "none";
     resetGame();
@@ -167,6 +177,8 @@ function resetGame() {
   computerText.innerHTML = "";
   playerResults.textContent = "";
   computerResults.textContent = "";
-  displayResults.textContent = "";
   score.textContent = "";
+  winner.textContent = "";
 }
+
+
