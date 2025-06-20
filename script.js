@@ -83,14 +83,6 @@ function getComputerChoice() {
   return randomChoice;
 }
 
-
-
-
-
-
-
-
-
 buttons.forEach((button) => {
   button.addEventListener("click", function () {
     computerChoice = getComputerChoice();
@@ -146,8 +138,7 @@ function endGame() {
 }
 
 function setupUI() {
-  // humanText.innerHTML = `You chose: ${humanChoice}`;
-  // computerText.innerHTML = `Computer Chose: ${computerChoice}`;
+
   humanPoints.textContent = `Your score was: ${humanScore}`;
   computerPoints.textContent = `Computer score was: ${computerScore}`;
 }
