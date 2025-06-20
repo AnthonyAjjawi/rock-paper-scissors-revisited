@@ -52,8 +52,6 @@ let computerScore = 0;
 //Initializing reset button
 let resetButton;
 
-//Initialize winner
-const winner = document.createElement("div");
 
 
 //create computer container div
@@ -63,6 +61,20 @@ console.log(computerContainer);
 //create computer button
 const computerButton = document.querySelector(".btn-4");
 
+//create a div to show the results
+const gameResults = document.querySelector(".details");
+
+//create a div to show scores
+const scores = document.querySelector(".scores");
+
+//create div to show computer score
+const computerPoints = document.querySelector(".computerScore");
+
+//create div to show human score
+const humanPoints = document.querySelector(".humanScore");
+
+//create a div to show play again
+const playAgain = document.querySelector(".playAgain");
 
 
 //creating a function to allow the computer to choose one of the choices
@@ -121,9 +133,10 @@ function playRound(human, computer) {
 
 function endGame() {
   if (humanScore > computerScore) {
-    winner.textContent = `Game over! Good job, human, for now.`;
+    gameResults.textContent = `Game over! Good job, human, for now.`;
+    
   } else {
-    winner.textContent = `Game Over! Puny human. Try a little harder next time.`;
+    gameResults.textContent = `Game Over! Puny human. Try a little harder next time.`;
   }
 
   buttons.forEach((button) => {
@@ -133,18 +146,14 @@ function endGame() {
 }
 
 function setupUI() {
-  humanText.innerHTML = `You chose: ${humanChoice}`;
+  // humanText.innerHTML = `You chose: ${humanChoice}`;
   // computerText.innerHTML = `Computer Chose: ${computerChoice}`;
-  playerResults.textContent = `Your score is: ${humanScore}`;
-  computerResults.textContent = `Computer score is: ${computerScore}`;
+  humanPoints.textContent = `Your score was: ${humanScore}`;
+  computerPoints.textContent = `Computer score was: ${computerScore}`;
 }
 
 function initUI() {
-  displayResults.appendChild(humanText);
-  // displayResults.appendChild(computerText);
-  displayResults.appendChild(playerResults);
-  displayResults.appendChild(computerResults);
-  displayResults.appendChild(winner);
+
   game.appendChild(displayResults);
 
   humanText.classList.add("humanText");
@@ -153,10 +162,11 @@ function initUI() {
   computerResults.classList.add("computerResults");
   displayResults.classList.add("displayResults");
   score.classList.add("score");
-  winner.classList.add("winner");
+  
 
   resetButton = document.createElement("button");
-  game.appendChild(resetButton);
+  playAgain.appendChild(resetButton);
+  resetButton.classList.add("resetButton");
   resetButton.style.display = "none";
   resetButton.textContent = "Play Again?";
 
@@ -178,7 +188,11 @@ function resetGame() {
   playerResults.textContent = "";
   computerResults.textContent = "";
   score.textContent = "";
-  winner.textContent = "";
+
+  computerButton.textContent = "";
+  gameResults.textContent = "";
+  humanPoints.textContent = "";
+  computerPoints.textContent = "";
 }
 
 
